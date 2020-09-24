@@ -25,9 +25,7 @@ steps:
       npm install -g appdmg
     displayName: Prepare dependencies
   - script: |
-      echo $AGENT_BUILDDIRECTORY
-      tree $AGENT_BUILDDIRECTORY/qt
-      PATH=$AGENT_BUILDDIRECTORY/qt/clang_64/bin:$PATH
+      PATH=$AGENT_BUILDDIRECTORY/qt/5.15.1/clang_64/bin:$PATH
       mkdir build
       cd build
       cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_DEPLOYMENT_TARGET=10.12
@@ -36,7 +34,7 @@ steps:
       appdmg ../assets/package_dmg.json ../qv2ray-legacy.dmg
     displayName: Build Qv2ray
     env:
-      Qt5_DIR: $(Agent.BuildDirectory)/qt/clang_64/lib/cmake/Qt5
+      Qt5_DIR: $(Agent.BuildDirectory)/qt/5.15.1/clang_64/lib/cmake/Qt5
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: "qv2ray-legacy.dmg"
