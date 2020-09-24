@@ -20,12 +20,12 @@ steps:
       versionSpec: "12.x"
   - script: |
       pip3 install aqtinstall
-      aqt install --outputdir $Agent.BuildDirectory/qt 5.15.1 mac desktop
+      aqt install --outputdir $AGENT_BUILDDIRECTORY/qt 5.15.1 mac desktop
       brew install protobuf grpc ninja pkg-config
       npm install -g appdmg
     displayName: Prepare dependencies
   - script: |
-      PATH=$Agent.BuildDirectory/qt/clang_64/bin:$PATH
+      PATH=$AGENT_BUILDDIRECTORY/qt/clang_64/bin:$PATH
       mkdir build
       cd build
       cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_DEPLOYMENT_TARGET=10.12
